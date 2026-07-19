@@ -18,8 +18,8 @@ _start:
     ldr r1, =0x48312100
     str r1, [r0]
 
-    @ Patch mov r0, 'diag' -> mov r0, 'ibox'
-    ldr r1, =0x7078F646
+    @ Patch mov r0, 'diag' -> mov r0, 'ibob'
+    ldr r1, =0x7062F646
     str r1, [r0, #0x8]
     ldr r1, =0x1062F6C6
     str r1, [r0, #0xC]

@@ -73,7 +73,8 @@ int echo_cmd(int argc, cmd_arg_t* argv) {
 ADD_COMMAND("echo", echo_cmd, "Repeats stdin to stdout");
 
 int diff_cmd(int argc, cmd_arg_t* argv) {
-	for(uint32_t i = 0; i <= 0x00043000; i += 4) {
+	uint32_t iboot_end = get_env_uint("filesize");
+	for(uint32_t i = 0; i <= iboot_end; i += 4) {
 		uint32_t tru = *(uint32_t*)(((uint32_t)loadaddr) + i);
 		uint32_t pru = *(uint32_t*)(((uint32_t)base_address) + i);
 		if(tru != pru) {

@@ -14,8 +14,8 @@ _start:
     blx r3
 
     @ Patch Diags handler type 5 (diags) -> 0 (unknown)
-    mov r0, #0x94C
-    ldr r1, =0x21004831
+    mov r0, #0x94c
+    ldr r1, =0x48312100
     str r1, [r0]
 
     @ Patch mov r0, 'diag' -> mov r0, 'ibob'
@@ -25,18 +25,20 @@ _start:
     str r1, [r0, #0xC]
 
     @ Disable signature checks
-    ldr r0, =0x183F0
-    ldr r1, =0x60182000
-    str r1, [r0]
+    ldr r0, =0x1ae74
+    movw r1, #0x2000
+    b after
 
-    @ Load the image at 0x44000000 rather than 0x40000000
-    @ (seems to be a requirement for iBoots < iOS6).
-    mov r0, #0x910
-    ldr r1, =0x4088f04f
+# This block must be 0.
+.space 0x8
+
+after:
+    movt r1, #0x6018
     str r1, [r0]
 
     @ Patch fsboot handler -> diags handler
-    ldr r0, =0x42004
+    ldr r0, =0x46004
+
     mov r1, #0x941
     str r1, [r0]
 
@@ -44,19 +46,23 @@ _start:
     ldr r0, =NETTOYEUR
     blx r0
 
+    @ WTF?
+    ldr r7, =WTF
+    blx r7
+
     @ Disable the cache.
     ldr r7, =ARM_CPU_QUIESCE
     blx r7
     
     @ Restart iBoot.
-    ldr r7, =IBOOT_ADDR
+    ldr r7, =LOAD_ADDR
     bx r7
 
 .align 4
-.space 0x10 @ This space needs to == 0
 .pool
-.set SAFE_SP,                0x5fff8000
-.set DISABLE_INTERRUPTS,     0x5ff33b19
-.set ARM_CPU_QUIESCE,        0x5ff1eb81
-.set NETTOYEUR,              0x5FF459ED
-.set IBOOT_ADDR,             0x5ff00000
+.set SAFE_SP,                0x9fff8000
+.set DISABLE_INTERRUPTS,     0x9ff36e3d
+.set ARM_CPU_QUIESCE,        0x9ff21e2d
+.set WTF,                    0x9ff016c9
+.set NETTOYEUR,              0x9FF4A06D
+.set LOAD_ADDR,              0x9ff00000
